@@ -67,7 +67,7 @@ router.post("/callback", (req, res) => {
               let result = JSON.parse(response);
               if (result.STATUS === "TXN_SUCCESS") {
 
-                res.redirect(`${netflixBrowsePage}/browse`)
+                res.redirect(`${netflixBrowsePage}/paymentStatus`)
                 // res.json({status:`Transaction successful`});
               }
   
@@ -79,6 +79,8 @@ router.post("/callback", (req, res) => {
           post_req.end();
         });
       } else {
+        res.redirect(`${netflixBrowsePage}/paymentStatus`)
+
         res.json({status:'Transaction Failed'})
       }
     });
